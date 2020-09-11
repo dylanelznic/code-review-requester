@@ -2,4 +2,4 @@
     Select all users records
 */
 SELECT *
-FROM Users
+FROM users

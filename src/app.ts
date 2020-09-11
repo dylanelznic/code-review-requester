@@ -3,18 +3,21 @@ import express, { NextFunction, Request, Response } from 'express';
 import helmet from 'helmet';
 import routes from 'routes';
 import { ResponseError, expressLogger, handleError } from 'utils';
+import { appConfig } from 'config';
 
 /** Initialize Express */
 const app = express();
 
-/** Register express pino logger */
-app.use(expressLogger);
+if (appConfig.environment !== 'test') {
+  /** Register express pino logger */
+  app.use(expressLogger);
 
-/** Register logging for every request */
-app.use((req: Request, res: Response, next: NextFunction) => {
-  req.log.info('request sent');
-  next();
-});
+  /** Register logging for every request */
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    req.log.info('request sent');
+    next();
+  });
+}
 
 /** Register CORS middleware */
 app.use(cors());

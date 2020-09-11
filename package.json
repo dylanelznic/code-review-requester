@@ -10,9 +10,9 @@
     "copy-sql": "cp -r src/db/sql/ dist/db/sql/",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node dist/server.js | ./node_modules/.bin/pino-pretty",
+    "start": "NODE_ENV=dev node dist/server.js | ./node_modules/.bin/pino-pretty",
     "dev": "nodemon -e json,ts,tsx --exec \"npm run start\"",
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "repository": {
     "type": "git",

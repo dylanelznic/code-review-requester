@@ -3,12 +3,15 @@ import pgPromise from 'pg-promise';
 import { IDatabase, IInitOptions, IMain } from 'pg-promise';
 
 import { IExtensions, UsersRepository } from './repos';
+import { RequestsRepository } from './repos/requests';
 
 type ExtendedProtocol = IDatabase<IExtensions> & IExtensions;
 
 /** Pg-promise initialization options */
 const initOptions: IInitOptions<IExtensions> = {
+  /** Extend pgp with our custom repos */
   extend(obj: ExtendedProtocol) {
+    obj.requests = new RequestsRepository(obj, pgp);
     obj.users = new UsersRepository(obj, pgp);
   },
 };

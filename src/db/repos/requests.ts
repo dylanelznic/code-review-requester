@@ -1,11 +1,11 @@
 import { ColumnSet, IDatabase, IMain } from 'pg-promise';
 
-import { User } from '../models';
-import { users as sql } from '../sql';
+import { Request } from '../models';
+import { requests as sql } from '../sql';
 import { ResponseError } from 'utils';
 
-/** DB access for the Users table */
-export class UsersRepository {
+/** DB access for the Requests table */
+export class RequestsRepository {
   /** Read-only structure with query-formatting columns */
   cs: ColumnSet;
 
@@ -18,13 +18,13 @@ export class UsersRepository {
     this.cs = new pgp.helpers.ColumnSet(
       ['id', 'username', 'display_name', 'bio', 'created_at', 'updated_at'],
       {
-        table: 'users',
+        table: 'requests',
       },
     );
   }
 
-  /** Select all Users, returning a list of Users */
-  all = async (): Promise<User[]> => {
+  /** Select all Requests, returning a list of Requests */
+  all = async (): Promise<Request[]> => {
     try {
       return await this.db.manyOrNone(sql.all);
     } catch (e) {

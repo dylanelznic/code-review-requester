@@ -1,5 +1,6 @@
 /** Environment variables for the app */
 export interface AppVariables {
+  environment: string;
   express: ExpressVariables;
 }
 

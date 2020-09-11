@@ -8,8 +8,8 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "sourceMap": true,
-    "target": "es6",
+    "target": "es6"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "test/**/*"],
   "exlucde": ["node_modules/**/*"]
 }

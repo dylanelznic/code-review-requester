@@ -1,13 +1,16 @@
 import { join as joinPath } from 'path';
+import { logger } from 'utils';
 
 import { IQueryFileOptions, QueryFile } from 'pg-promise';
+
+/** SQL queries for the requests table */
+export const requests = {
+  all: sql('requests/all.sql'),
+};
 
 /** SQL queries for the users table */
 export const users = {
   all: sql('users/all.sql'),
-  byId: sql('users/by-id.sql'),
-  byName: sql('users/by-name.sql'),
-  delete: sql('users/delete.sql'),
 };
 
 /**
@@ -27,7 +30,7 @@ function sql(file: string): QueryFile {
   const qf: QueryFile = new QueryFile(fullPath, options);
 
   if (qf.error) {
-    console.error(qf.error);
+    logger.error(qf.error);
   }
 
   return qf;

@@ -2,10 +2,12 @@ import dotenv from 'dotenv';
 
 import { AppVariables, DBVariables } from './types';
 
-dotenv.config();
+/** Load .env values */
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 /** App config variables */
 export const appConfig: AppVariables = {
+  environment: process.env.NODE_ENV,
   express: {
     port: process.env.PORT,
   },

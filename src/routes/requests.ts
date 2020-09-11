@@ -4,16 +4,16 @@ import { NextFunction, Request, Response, Router } from 'express';
 const router = Router();
 
 /**
- * /users:
+ * /requests:
  *   get:
- *     description: Return a list of all Users from the DB
+ *     description: Return a list of all Requests from the DB
  *     produces:
  *       - application/json
  *     responses:
  *       200:
- *         description: Successfuly returned a list of all Users
+ *         description: Successfuly returned a list of all Requests
  *       500:
- *         description: Error fetching Users from the DB
+ *         description: Error fetching Requests from the DB
  */
 router.get(
   '/',
@@ -23,8 +23,8 @@ router.get(
     next: NextFunction,
   ): Promise<Response> => {
     try {
-      const users = await db.users.all();
-      return res.send(users);
+      const requests = await db.requests.all();
+      return res.send(requests);
     } catch (e) {
       next(e);
     }
